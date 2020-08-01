@@ -1,7 +1,7 @@
 import scrapy.crawler
 
-from gochan_crawler.spiders.thread import BoardSpider
-from gochan_crawler.spiders.thread import BoardListSpider
+from gochan_crawler.spiders.board import BoardSpider
+from gochan_crawler.spiders.board_list import BoardListSpider
 from gochan_crawler.spiders.thread import ThreadSpider
 
 
