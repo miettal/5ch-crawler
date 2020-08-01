@@ -8,6 +8,7 @@ jobs:
     steps:
       - run: pip install --upgrade tox
       - checkout
+      - run: tox --notest
       - run: tox -e flake8
 
   test:
@@ -17,6 +18,7 @@ jobs:
     steps:
       - run: pip install --upgrade tox
       - checkout
+      - run: tox --notest
       - run: tox -e py38
 workflows:
   version: 2
