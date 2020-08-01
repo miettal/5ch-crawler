@@ -8,16 +8,17 @@ class ThreadSpider(scrapy.Spider):
     name = 'thread'
     allowed_domains = ['5ch.net']
 
-    def __init__(self, start_url='https://asahi.5ch.net/test/read.cgi/newsplus/1596266486/'):
-        m = re.match('(https?://[a-zA-Z0-9.]+/test/read.cgi/[a-zA-Z0-9]+/[0-9]+)(/.*)?', start_url)
+    def __init__(self, url='https://asahi.5ch.net/test/read.cgi/newsplus/1596266486/'):
+        m = re.match('(https?://[a-zA-Z0-9.]+/test/read.cgi/[a-zA-Z0-9]+/[0-9]+)(/.*)?', url)
         if m is None:
             raise Exception()
-        url = m.group(1)
-        self.start_urls = [url]
+        self.thread_url = m.group(1)
+        self.start_urls = [self.thread_url]
 
     def parse(self, response):
         for div in response.css('.thread .post'):
             post_id = int(div.css('.number::text').extract()[0])
+            post_url = '{:s}/{:d}'.format(self.thread_url, post_id)
             try:
                 post_name = div.css('.name b a::text').extract()[0]
                 post_mail = div.css('.name b a::attr("href")').extract()[0]
@@ -40,6 +41,7 @@ class ThreadSpider(scrapy.Spider):
             post_message_text = re.sub('<[^>]*>', '', post_message_text, flags=re.DOTALL)
             yield {
                 'id': post_id,
+                'url': post_url,
                 'name': post_name,
                 'mail': post_mail,
                 'date': post_date,
