@@ -8,7 +8,9 @@ class BoardSpider(scrapy.Spider):
     name = 'board'
     allowed_domains = ['5ch.net']
 
-    def __init__(self, url='https://asahi.5ch.net/newsplus/'):
+    def __init__(self, url=None):
+        if url is None:
+            raise Exception()
         m = re.match('(https?://[a-zA-Z0-9]+\\.5ch\\.net)/([a-zA-Z0-9]+)(/.*)?', url)
         if m is None:
             raise Exception()

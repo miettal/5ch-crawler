@@ -11,7 +11,9 @@ class ThreadSpider(scrapy.Spider):
     name = 'thread'
     allowed_domains = ['5ch.net']
 
-    def __init__(self, url='https://asahi.5ch.net/test/read.cgi/newsplus/1596266486/'):
+    def __init__(self, url=None):
+        if url is None:
+            raise Exception()
         m = re.match('(https?://[a-zA-Z0-9.]+/test/read.cgi/[a-zA-Z0-9]+/[0-9]+)(/.*)?', url)
         if m is None:
             raise Exception()
