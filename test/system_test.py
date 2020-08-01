@@ -1,4 +1,4 @@
-import scrapy
+import scrapy.crawler
 
 from gochan_crawler.spiders.thread import ThreadSpider
 
