@@ -12,7 +12,6 @@ class BoardListSpider(scrapy.Spider):
         for e in response.css('table > tr >td > font > a, table > tr > td > font > b'):
             try:
                 board_category = e.css('b::text').extract()[0]
-                print(board_category)
                 continue
             except IndexError:
                 pass
