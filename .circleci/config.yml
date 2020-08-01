@@ -1,0 +1,27 @@
+version: 2
+
+jobs:
+  lint:
+    docker:
+      - image: python:latest
+
+    steps:
+      - run: pip install --upgrade tox
+      - checkout
+      - run: tox -e flake8
+
+  test:
+    docker:
+      - image: python:latest
+
+    steps:
+      - run: pip install --upgrade tox
+      - checkout
+      - run: tox -e py38
+workflows:
+  version: 2
+
+  test:
+    jobs:
+      - lint
+      - test
