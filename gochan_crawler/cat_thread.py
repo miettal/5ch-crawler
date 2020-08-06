@@ -1,12 +1,19 @@
 import json
 from optparse import OptionParser
 import re
+from datetime import datetime
+from datetime import date
 
 from scrapy import crawler
 from scrapy import signals
 from scrapy.signalmanager import dispatcher
 
 from gochan_crawler.spiders.thread import ThreadSpider
+
+def json_serial(obj):
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    raise TypeError
 
 
 if __name__ == '__main__':
@@ -31,4 +38,4 @@ if __name__ == '__main__':
     for post in posts:
         m = re.search(options.pattern, post['message_text'])
         if m:
-            json.dumps(post)
+            print(json.dumps(post, default=json_serial))
