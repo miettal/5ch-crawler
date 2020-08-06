@@ -1,3 +1,4 @@
+import json
 from optparse import OptionParser
 import re
 
@@ -30,4 +31,4 @@ if __name__ == '__main__':
     for post in posts:
         m = re.search(options.pattern, post['message_text'])
         if m:
-            print(post)
+            json.dumps(post)

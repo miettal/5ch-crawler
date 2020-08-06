@@ -1,3 +1,4 @@
+import json
 from optparse import OptionParser
 import re
 
@@ -30,4 +31,4 @@ if __name__ == '__main__':
     for thread in threads:
         m = re.search(options.pattern, thread['title'])
         if m:
-            print(thread)
+            json.dumps(thread)
