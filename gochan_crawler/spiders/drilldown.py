@@ -106,17 +106,20 @@ class DrilldownSpider(scrapy.Spider):
                 c = m.group(0).count('br')
                 post_message_text = re.sub('( <br>)+ ', '\n' * c, post_message_text, count=1, flags=re.DOTALL)
             post_message_text = re.sub('<[^>]*>', '', post_message_text, flags=re.DOTALL)
-            yield {
-                'board': response.meta['board'],
-                'thread': response.meta['thread'],
-                'post': {
-                    'id': post_id,
-                    'url': post_url,
-                    'name': post_name,
-                    'mail': post_mail,
-                    'date': post_date,
-                    'uid': post_uid,
-                    'message_html': post_message_html,
-                    'message_text': post_message_text,
-                },
-            }
+
+            m = re.search(self.post_message, post_message_text)
+            if m:
+                yield {
+                    'board': response.meta['board'],
+                    'thread': response.meta['thread'],
+                    'post': {
+                        'id': post_id,
+                        'url': post_url,
+                        'name': post_name,
+                        'mail': post_mail,
+                        'date': post_date,
+                        'uid': post_uid,
+                        'message_html': post_message_html,
+                        'message_text': post_message_text,
+                    },
+                }
