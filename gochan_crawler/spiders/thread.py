@@ -31,7 +31,7 @@ class ThreadSpider(scrapy.Spider):
                 post_name = div.css('.name b::text').extract()[0]
                 post_mail = None
             post_date = div.css('.date::text').extract()[0]
-            m = re.match('([0-9]{4})/([0-9]{2})/([0-9]){2}\\([日月火水木金土]\\) ([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{2})', post_date)
+            m = re.match('([0-9]{4})/([0-9]{2})/([0-9]{2})\\([日月火水木金土]\\) ([0-9]{2}):([0-9]{2}):([0-9]{2})\\.([0-9]{2})', post_date)
             if m:
                 post_date = datetime.datetime(
                     int(m.group(1)), int(m.group(2)), int(m.group(3)),
