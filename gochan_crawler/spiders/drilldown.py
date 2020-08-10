@@ -93,7 +93,7 @@ class DrilldownSpider(scrapy.Spider):
                     tz = pytz.timezone('Asia/Tokyo')
                     post_date = tz.localize(post_date)
                 except ValueError:
-                    print(post_date)
+                    pass
             else:
                 post_date = None
             try:
