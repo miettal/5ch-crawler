@@ -54,9 +54,10 @@ DOWNLOAD_DELAY = 0.1
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
 #    'gochan_crawler.middlewares.GochanCrawlerDownloaderMiddleware': 543,
-#}
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 100,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

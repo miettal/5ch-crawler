@@ -5,7 +5,7 @@ import scrapy
 class BoardListSpider(scrapy.Spider):
     name = 'board_list'
     allowed_domains = ['5ch.net']
-    start_urls = ['https://menu.5ch.net/bbstable.html']
+    start_urls = ['http://menu.5ch.net/bbstable.html']
 
     def parse(self, response):
         board_category = None

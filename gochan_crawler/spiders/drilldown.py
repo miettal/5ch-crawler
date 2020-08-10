@@ -10,7 +10,7 @@ import scrapy
 class DrilldownSpider(scrapy.Spider):
     name = 'drilldown'
     allowed_domains = ['5ch.net']
-    start_urls = ['https://menu.5ch.net/bbstable.html']
+    start_urls = ['http://menu.5ch.net/bbstable.html']
 
     def __init__(self, board_name, thread_title, post_message):
         self.board_name = board_name
