@@ -23,7 +23,7 @@ class ThreadSpider(scrapy.Spider):
     def parse(self, response):
         for div in response.css('.thread .post'):
             post_id = int(div.css('.number::text').extract()[0])
-            post_url = '{:s}/{:d}'.format(self.thread_url, post_id)
+            post_url = '{:s}{:d}'.format(self.thread_url, post_id)
             try:
                 post_name = div.css('.name b a::text').extract()[0]
                 post_mail = div.css('.name b a::attr("href")').extract()[0]

@@ -31,6 +31,7 @@ if __name__ == '__main__':
     dispatcher.connect(crawler_results, signal=signals.item_passed)
     crawler_process = crawler.CrawlerProcess({
         'LOG_LEVEL': 'WARNING',
+        'DOWNLOAD_TIMEOUT': 2,
     })
     crawler_process.crawl(DrilldownSpider, board_name=options.board_name, thread_title=options.thread_title, post_message=options.post_message)
     crawler_process.start()
